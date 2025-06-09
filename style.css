@@ -1,949 +1,251 @@
-/* إعدادات عامة */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/**
+ * DrSwat Engine - CSS
+ * ملف التنسيق الرئيسي لمنصة DrSwat Engine
+ */
+
+/* تنسيقات عامة */
+:root {
+    --primary-color: #005f73;
+    --secondary-color: #0a9396;
+    --accent-color: #e9d8a6;
+    --text-color: #333;
+    --light-color: #f0f4f8;
+    --success-color: #2a9d8f;
+    --warning-color: #e76f51;
+    --card-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+    background-color: var(--light-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+    text-align: right;
     line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* الهيدر */
+/* تنسيق الرأس */
 header {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-header .container {
-    padding: 1rem 20px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
-    color: #4a5568;
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
+    margin: 0;
+    font-size: 2.5rem;
 }
 
 header p {
-    color: #718096;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-}
-
-nav a {
-    text-decoration: none;
-    color: #4a5568;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
-
-nav a:hover,
-nav a.active {
-    background: #667eea;
-    color: white;
-}
-
-/* الأزرار */
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-}
-
-.btn.secondary {
-    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-}
-
-.btn.secondary:hover {
-    box-shadow: 0 10px 25px rgba(72, 187, 120, 0.4);
-}
-
-/* القسم الرئيسي */
-#hero {
-    padding: 4rem 0;
-    text-align: center;
-    color: white;
-}
-
-#hero h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-#hero p {
+    margin: 0.5rem 0 0;
     font-size: 1.2rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
     opacity: 0.9;
 }
 
-/* المميزات */
-#features {
-    padding: 4rem 0;
-    background: white;
-}
-
-#features h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 3rem;
-    color: #4a5568;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.feature-card {
-    background: white;
+/* تنسيق المحتوى الرئيسي */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
 }
 
-.feature-card:hover {
+section {
+    margin-bottom: 3rem;
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+}
+
+section h2 {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+}
+
+/* تنسيق بطاقات المهارات */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.skill-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--secondary-color);
+}
+
+.skill-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.feature-card h3 {
-    color: #4a5568;
-    margin-bottom: 1rem;
+.skill-card h3 {
+    color: var(--secondary-color);
+    margin-top: 0;
     font-size: 1.3rem;
 }
 
-.feature-card p {
-    color: #718096;
-    line-height: 1.6;
+.skill-card p {
+    margin-bottom: 0;
+    font-size: 0.95rem;
 }
 
-/* تحليل النص */
+/* تنسيق قسم التحليل */
 #analysis {
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    color: white;
-}
-
-#analysis h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 3rem;
-}
-
-.analysis-container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.1);
+    background-color: white;
+    border-radius: 8px;
     padding: 2rem;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
+    box-shadow: var(--card-shadow);
 }
 
-#userInput {
+textarea {
     width: 100%;
-    min-height: 150px;
+    height: 150px;
+    margin-top: 1rem;
     padding: 1rem;
-    border: none;
-    border-radius: 10px;
     font-size: 1rem;
     resize: vertical;
-    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     font-family: inherit;
+    transition: border-color 0.3s ease;
 }
 
-#analyzeButton {
-    width: 100%;
-    margin-bottom: 2rem;
+textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px rgba(10, 147, 150, 0.2);
+}
+
+button {
+    margin-top: 1rem;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #007f87;
 }
 
 #result {
-    background: rgba(255, 255, 255, 0.9);
-    color: #333;
+    margin-top: 2rem;
     padding: 1.5rem;
-    border-radius: 10px;
-    margin-top: 1rem;
+    background-color: var(--accent-color);
+    border-radius: 8px;
     display: none;
 }
 
-.result-item {
-    margin-bottom: 1rem;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
+#result.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
 }
 
-.result-item:last-child {
-    border-bottom: none;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-.result-label {
-    font-weight: 600;
-    color: #4a5568;
-}
-
-.result-value {
-    margin-right: 0.5rem;
-    font-size: 1.1rem;
-}
-
-.suggestions {
-    background: #f7fafc;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-top: 1rem;
-}
-
-.suggestions h4 {
-    color: #4a5568;
-    margin-bottom: 0.5rem;
-}
-
-.suggestions ul {
-    list-style: none;
-    padding-right: 1rem;
-}
-
-.suggestions li {
-    margin-bottom: 0.5rem;
-    padding-right: 1rem;
-    position: relative;
-}
-
-.suggestions li:before {
-    content: "💡";
-    position: absolute;
-    right: 0;
-}
-
-/* عن المنصة */
-#about {
-    padding: 4rem 0;
-    background: white;
-}
-
-#about h2 {
-    text-align: center;
-    font-size: 2.2rem;
-    margin-bottom: 3rem;
-    color: #4a5568;
-}
-
-.about-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.about-text {
-    margin-bottom: 3rem;
-}
-
-.about-text h3 {
-    color: #667eea;
-    margin: 2rem 0 1rem 0;
-    font-size: 1.5rem;
-}
-
-.about-text p {
-    color: #718096;
-    line-height: 1.8;
-    margin-bottom: 1rem;
-}
-
-.values h3 {
-    text-align: center;
-    color: #4a5568;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-}
-
-.values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-}
-
-.value {
-    text-align: center;
-    padding: 1.5rem;
-    background: #f7fafc;
-    border-radius: 10px;
-}
-
-.value-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.value h4 {
-    color: #4a5568;
-    margin-bottom: 0.5rem;
-}
-
-.value p {
-    color: #718096;
-    font-size: 0.9rem;
-}
-
-/* الفوتر */
-footer {
-    background: #2d3748;
-    color: white;
-    padding: 3rem 0 1rem 0;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-}
-
-.footer-section h3 {
-    margin-bottom: 1rem;
-    color: #e2e8f0;
-}
-
-.footer-section ul {
-    list-style: none;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-section a {
-    color: #cbd5e0;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-section a:hover {
-    color: #667eea;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid #4a5568;
-    color: #a0aec0;
-}
-
-/* النافذة المنبثقة */
+/* تنسيق النافذة المنبثقة */
 .modal {
     display: none;
     position: fixed;
-    z-index: 2000;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
+    overflow: auto;
 }
 
 .modal-content {
     background-color: white;
-    margin: 5% auto;
+    margin: 10% auto;
     padding: 2rem;
-    border-radius: 15px;
-    width: 90%;
-    max-width: 800px;
-    max-height: 80vh;
-    overflow-y: auto;
+    border-radius: 8px;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
-    animation: modalSlideIn 0.3s ease;
-}
-
-@keyframes modalSlideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .close {
-    color: #aaa;
-    float: left;
-    font-size: 28px;
-    font-weight: bold;
     position: absolute;
     top: 1rem;
     left: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
     cursor: pointer;
 }
 
 .close:hover {
-    color: #667eea;
+    color: var(--secondary-color);
 }
 
-/* خطوات المنهج */
-.steps-container {
-    margin-top: 2rem;
-}
-
-.steps-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-}
-
-.step {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 1.5rem;
-    border-radius: 10px;
-    text-align: center;
-    transition: transform 0.3s ease;
-}
-
-.step:hover {
-    transform: translateY(-3px);
-}
-
-.step.additional {
-    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-}
-
-.step-number {
-    background: rgba(255, 255, 255, 0.2);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem auto;
-    font-weight: bold;
-    font-size: 1.2rem;
-}
-
-.step h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-}
-
-.step p {
-    font-size: 0.9rem;
-    opacity: 0.9;
-    line-height: 1.4;
-}
-
-/* صفحة المهارات */
-#skills-header {
-    padding: 3rem 0;
-    text-align: center;
-    color: white;
-}
-
-#skills-header h2 {
-    font-size: 2.2rem;
-    margin-bottom: 1rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-#skills-header p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    opacity: 0.9;
-}
-
-.skills-stats {
-    display: flex;
-    justify-content: center;
-    gap: 3rem;
-    margin-top: 2rem;
-}
-
-.stat {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1.5rem;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-}
-
-.stat-number {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-/* تبويبات التصنيفات */
-#skills-categories {
-    padding: 2rem 0;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
-
-.categories-tabs {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.category-tab {
-    padding: 0.8rem 1.5rem;
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
-
-.category-tab:hover,
-.category-tab.active {
-    background: white;
-    color: #667eea;
-}
-
-/* قائمة المهارات */
-#skills-list {
-    padding: 3rem 0;
-    background: white;
-}
-
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-}
-
-.skill-card {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.skill-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.skill-emoji {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-
-.skill-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.skill-category {
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
-
-.skill-body {
-    padding: 1.5rem;
-}
-
-.skill-description {
-    color: #718096;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-}
-
-.skill-progress {
-    margin-bottom: 1rem;
-}
-
-.progress-label {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    color: #4a5568;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: #e2e8f0;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-    border-radius: 4px;
-    transition: width 0.3s ease;
-}
-
-.skill-actions {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.skill-actions .btn {
-    flex: 1;
-    padding: 0.8rem;
-    font-size: 0.9rem;
-}
-
-/* تفاصيل المهارة */
-.skill-detail-container {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    margin-bottom: 2rem;
-}
-
-.skill-detail-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 2rem;
-    text-align: center;
-}
-
-.skill-detail-header .skill-emoji {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-}
-
-.skill-detail-header h2 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-.skill-detail-body {
-    padding: 2rem;
-}
-
-.skill-components {
-    margin-bottom: 3rem;
-}
-
-.component {
-    background: #f7fafc;
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-}
-
-.component h3 {
-    color: #4a5568;
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-}
-
-.component-content {
-    color: #718096;
-    line-height: 1.7;
-    white-space: pre-line;
-}
-
-.exercises-section,
-.resources-section {
-    margin-bottom: 3rem;
-}
-
-.exercises-section h3,
-.resources-section h3 {
-    color: #4a5568;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-    text-align: center;
-}
-
-.exercise-card,
-.resource-card {
-    background: white;
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    transition: border-color 0.3s ease;
-}
-
-.exercise-card:hover,
-.resource-card:hover {
-    border-color: #667eea;
-}
-
-.exercise-header,
-.resource-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.exercise-title,
-.resource-title {
-    font-weight: 600;
-    color: #4a5568;
-    font-size: 1.1rem;
-}
-
-.exercise-difficulty {
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-.difficulty-beginner {
-    background: #c6f6d5;
-    color: #22543d;
-}
-
-.difficulty-intermediate {
-    background: #fed7d7;
-    color: #742a2a;
-}
-
-.difficulty-advanced {
-    background: #fbb6ce;
-    color: #702459;
-}
-
-.resource-type {
-    padding: 0.3rem 0.8rem;
-    border-radius: 15px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    background: #bee3f8;
-    color: #2a4365;
-}
-
-.exercise-description,
-.resource-description {
-    color: #718096;
-    margin-bottom: 1rem;
-    line-height: 1.6;
-}
-
-.exercise-instructions {
-    background: #f7fafc;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-}
-
-.exercise-instructions h4 {
-    color: #4a5568;
-    margin-bottom: 0.5rem;
-}
-
-.exercise-instructions ol {
+/* تنسيق قائمة الخطوات */
+.steps-list {
     padding-right: 1.5rem;
-    color: #718096;
 }
 
-.exercise-instructions li {
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
+.steps-list li {
+    margin-bottom: 1rem;
 }
 
-.exercise-outcome {
-    background: #e6fffa;
-    border-right: 4px solid #38b2ac;
-    padding: 1rem;
-    border-radius: 0 8px 8px 0;
+.steps-list strong {
+    color: var(--secondary-color);
 }
 
-.exercise-outcome h4 {
-    color: #234e52;
-    margin-bottom: 0.5rem;
-}
-
-.exercise-outcome p {
-    color: #285e61;
-    line-height: 1.6;
-}
-
-/* التحميل */
-.loading {
+/* تنسيق التذييل */
+footer {
+    background-color: var(--primary-color);
+    color: white;
     text-align: center;
-    padding: 3rem;
-    color: #718096;
+    padding: 1.5rem;
+    margin-top: 3rem;
 }
 
-.loading-spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid #e2e8f0;
-    border-top: 4px solid #667eea;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 1rem auto;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* نموذج تحديث التقدم */
-.progress-form {
-    margin-top: 1rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #4a5568;
-}
-
-.form-group input[type="range"] {
-    width: 100%;
-    margin-bottom: 0.5rem;
-}
-
-#progressValue {
-    font-weight: bold;
-    color: #667eea;
-}
-
-.form-group textarea {
-    width: 100%;
-    min-height: 100px;
-    padding: 0.8rem;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    font-family: inherit;
-    resize: vertical;
-}
-
-.form-group textarea:focus {
-    outline: none;
-    border-color: #667eea;
-}
-
-.form-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
-}
-
-/* الاستجابة للشاشات الصغيرة */
+/* تنسيقات استجابية */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
+    header {
+        padding: 1.5rem;
     }
     
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    #hero h2 {
+    header h1 {
         font-size: 2rem;
     }
     
-    #hero p {
-        font-size: 1rem;
+    main {
+        padding: 1rem;
     }
     
-    .features-grid {
-        grid-template-columns: 1fr;
+    section {
+        padding: 1.5rem;
     }
     
-    .skills-stats {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .categories-tabs {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .skills-container {
+    .skills-grid {
         grid-template-columns: 1fr;
     }
     
     .modal-content {
-        width: 95%;
-        margin: 10% auto;
+        margin: 20% auto;
         padding: 1.5rem;
-    }
-    
-    .steps-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .form-actions {
-        flex-direction: column;
+        width: 90%;
     }
 }
 
