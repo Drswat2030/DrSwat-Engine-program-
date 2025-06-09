@@ -1,0 +1,19 @@
+src/Utils/skillEvaluator.js
+
+export function evaluateSkills(userAnswers) {
+  let recommendations = [];
+
+  if (userAnswers["القيادة"] >= 8) {
+    recommendations.push("أنت قائد بالفطرة، فكّر في تدريب مهارات التأثير والإقناع.");
+  }
+
+  if (userAnswers["التحليل"] <= 4) {
+    recommendations.push("طور مهارات التفكير التحليلي لديك بدورات في تحليل البيانات أو المنطق.");
+  }
+
+  if (userAnswers["النية الصافية"] >= 9 && userAnswers["القدرة الروحية"] >= 9) {
+    recommendations.push("تملك صفاء نادر، فكّر في الإرشاد أو الدعم النفسي للآخرين.");
+  }
+
+  return recommendations;
+}
