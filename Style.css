@@ -1615,7 +1615,7 @@ color: var(--text-color);
 background-color: #f0f0f0;
 padding: 1rem;
 border-radius: 5px;
-margin: 1rem 0;
+margin: 1rem;
 }
 .resource-item {
 margin-bottom: 1.5rem;
