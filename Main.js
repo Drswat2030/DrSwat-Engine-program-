@@ -264,4 +264,81 @@ function closeModal() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+console.log("DrSwat Engine Loaded. Ready for data analysis.");
+إعداد زر تحليل النص //
+const analyzeButton = document.getElementById('analyzeButton');
+if (analyzeButton) {
+analyzeButton.addEventListener('click', analyzeText);
+}
+إعداد النافذة المنبثقة //
+const openModal = document.getElementById('openModal');
+const closeModal = document.getElementById('closeModal');
+const modal = document.getElementById('modal');
+if (openModal && closeModal && modal) {
+openModal.addEventListener('click', function() {
+modal.style.display = "block";
+});
+closeModal.addEventListener('click', function() {
+modal.style.display = "none";
+});
+window.addEventListener('click', function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+});
+}
+});
+تحليل النص //
+async function analyzeText() {
+const input = document.getElementById("userInput").value;
+const result = document.getElementById("result");
+    f (!input.trim()) {
+;".الرجاء إدخال نص للتحليل" = textContent.result
+return
+}
+عرض مؤشر التحميل //
+result.innerHTML = '<div class="loading">النص تحليل جاري...>/div>';
+try {
+const response = await fetch('/api/analyze', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json'
+},
+body: JSON.stringify({ text: input })
+});
+if (!response.ok) {
+throw new Error(`HTTP error! status: ${response.status}`);
+}
+const data = await response.json();
+عرض النتائج //
+let resultHTML = `
+<3h/<:نتائج التحليل<3h <
+ <p> الكلمات عدد: $}data.word_count}</p>
+ <p> إيجابية كلمات: $}data.positive_count}</p>
+ <p>⚠ سلبية كلمات: $}data.negative_count}</p>
+ <p> الإيجابية نسبة: $}data.positive_percentage}%</p>
+ <p> العامة الحالة: $}data.overall_mood} ${data.mood_emoji}</p>
+ `;
+إضافة اقتراحات إذا كانت متوفرة //
+if (data.suggestions && data.suggestions.length > 0) {
+resultHTML += `
+<4h/<:اقتراحات للتحسين<4h <
+ <ul>
+${data.suggestions.map(suggestion => `<li>${suggestion}</li>`).join('')}
+ </ul>
+ `;
+}
+result.innerHTML = resultHTML;
+} catch (error) {
+console.error('Error analyzing text:', error);
+result.innerHTML = `
+ <div class="error-message">
+ <p>ً
+،ً حدث خطأ أثناء تحليل النص. يرجى المحاولة مرة أخرى لاحقا
+<p/<.عذرا
+ </div>
+ `;
+}
+}
 
