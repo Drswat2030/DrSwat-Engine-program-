@@ -6,3 +6,9 @@ MarkupSafe==2.0.1
 itsdangerous==2.0.1
 click==8.0.1
 
+
+flask==2.0.1
+
+flask-cors==3.0.10
+
+mysql-connector-python==8.0.26
