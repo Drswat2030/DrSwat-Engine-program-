@@ -390,4 +390,281 @@ function getResourceTypeLabel(type) {
     };
     return labels[type] || type;
 }
+async function fetchSkills() {
+try {
+const response = await fetch('/api/skills');
+if (!response.ok) {
+throw new Error(`HTTP error! status: ${response.status}`);
+    
+const skills = await response.json();
+displaySkills(skills);
+    } catch (error) {
+console.error('Error fetching skills:', error);
+document.getElementById('skillsContainer').innerHTML = `
+ <div class="error-message">
+ <p>ً
+،ً حدث خطأ أثناء تحميل المهارات. يرجى المحاولة مرة أخرى لاحقا
+<p/<.عذرا
+ <button onclick="fetchSkills()">المحاولة إعادة>/button>
+ </div>
+ `;
+}
+}
+عرض المهارات في الصفحة //
+function displaySkills(skills, categoryFilter = 'all') {
+const container = document.getElementById('skillsContainer');
+container.innerHTML = '';
+تصفية المهارات حسب الفئة إذا تم تحديد فئة //
+const filteredSkills = categoryFilter === 'all'
+? skills
+: skills.filter(skill => skill.category_id == categoryFilter);
+if (filteredSkills.length === 0) {
+;'<p/<.لا توجد مهارات في هذه الفئة<p = '<innerHTML.container
+return;
+}
+filteredSkills.forEach(skill => {
+const skillCard = document.createElement('div');
+skillCard.className = 'skill-card';
+استرجاع تقدم المستخدم )يمكن تعديله حسب نظام تسجيل الدخول( //
+const progress = getUserProgress(skill.id) || 0;
+skillCard.innerHTML = `
+ <div class="skill-emoji">${skill.emoji}</div>
+ <h2 class="skill-title">${skill.title}</h2>
+ <p class="skill-description">${skill.description}</p>
+ <div class="skill-progress">
+ <div class="skill-progress-bar" style="width: ${progress}%"></div>
+ </div>
+ <p>${progress}% مكتمل>/p>
+ <button class="skill-button" onclick="loadSkillDetail(${skill.id})">المهارة عرض>/
+button>
+ `;
+container.appendChild(skillCard);
+});
+}
+استرجاع تقدم المستخدم )مثال بسيط - يمكن تعديله( //
+function getUserProgress(skillId) {
+    const progressData = {
+%الوعي الذاتي - 60 // 60, 1:
+%التنفس العلاجي - 45 // 45, 2:
+%التخطيط الذكي - 30 // 30, 3:
+باقي المهارات ... //
+};
+return progressData[skillId] || 0;
+}
+تحميل تفاصيل مهارة محددة //
+async function loadSkillDetail(skillId) {
+try {
+عرض مؤشر التحميل //
+document.getElementById('skillDetail').innerHTML = '<div class="loading">جاري
+;'<div/<...تحميل تفاصيل المهارة
+document.getElementById('skill-detail').style.display = 'block';
+const response = await fetch(`/api/skills/${skillId}`);
+if (!response.ok) {
+throw new Error(`HTTP error! status: ${response.status}`);
+}
+const skillData = await response.json();
+displaySkillDetail(skillData);
+} catch (error) {
+console.error('Error loading skill detail:', error);
+document.getElementById('skillDetail').innerHTML = `
+ <div class="error-message">
+ <p>ً
+،ً حدث خطأ أثناء تحميل تفاصيل المهارة. يرجى المحاولة مرة أخرى لاحقا
+<p/<.عذرا
+ <button onclick="loadSkillDetail(${skillId})">المحاولة إعادة>/button>
+ </div>
+ `;
+}
+}
+عرض تفاصيل المهارة //
+function displaySkillDetail(skillData) {
+const detailContainer = document.getElementById('skillDetail');
+التمرير إلى قسم التفاصيل //
+detailContainer.scrollIntoView({ behavior: 'smooth' });
+let componentsHTML = '';
+if (skillData.components && skillData.components.length > 0) {
+skillData.components.forEach(component => {
+componentsHTML += `
+ <div class="component-section">
+ <h3 class="component-title">${component.section_title}</h3>
+ <div>${component.content}</div>
+ </div>
+ `;
+});
+}
+let exercisesHTML = '';
+if (skillData.exercises && skillData.exercises.length > 0) {
+exercisesHTML = '<h2>العملية التمارين>/h2>';
+skillData.exercises.forEach(exercise => {
+exercisesHTML += `
+ <div class="exercise-card">
+ <h3 class="exercise-title">${exercise.title}</h3>
+ <p class="exercise-description">${exercise.description}</p>
+ <p>المدة: $}exercise.duration} | المستوى: $
+{getArabicDifficulty(exercise.difficulty_level)}</p>
+<4h/<:خطوات التمرين<4h <
+ <div class="exercise-instructions">${exercise.instructions}</div>
+<4h/<:النتيجة المتوقعة<4h <
+ <p>${exercise.expected_outcome}</p>
+ </div>
+ `;
+});
+}
+let resourcesHTML = '';
+if (skillData.resources && skillData.resources.length > 0) {
+resourcesHTML = '<h2>إضافية موارد>/h2>';
+skillData.resources.forEach(resource => {
+resourcesHTML += `
+ <div class="resource-item">
+ <h3>${resource.title}</h3>
+ <p>النوع: $}getArabicResourceType(resource.type)}</p>
+${resource.url ? `<p><a href="${resource.url}" target="_blank">فتح
+المورد>/a></p>` : ''}
+ <p>${resource.description}</p>
+ </div>
+ `;
+});
+}
+detailContainer.innerHTML = `
+ <div class="skill-header">
+ <div class="skill-emoji-large">${skillData.emoji}</div>
+ <div class="skill-title-container">
+ <h1>${skillData.title}</h1>
+ <p>${skillData.description}</p>
+ </div>
+ </div>
+${componentsHTML}
+${exercisesHTML}
+${resourcesHTML}
+ <div class="skill-actions">
+ <button class="skill-button" onclick="markProgress(${skillData.id})">تحديث
+<button/<التقدم
+ <button class="skill-button secondary" 
+onclick="document.getElementById('skill-detail').style.display = 'none'">إغلاق>/
+button>
+ </div>
+ `;
+}
+تحويل مستوى الصعوبة إلى العربية //
+function getArabicDifficulty(level) {
+const levels = {
+,'مبتدئ' :'beginner'
+,'متوسط' :'intermediate'
+'متقدم' :'advanced'
+};
+return levels[level] || level;
+}
+تحويل نوع المورد إلى العربية //
+function getArabicResourceType(type) {
+const types = {
+,'فيديو' :'video'
+,'صوت' :'audio'
+,'مقال' :'article'
+,'رسم معلوماتي' :'infographic'
+,'ورقة عمل' :'worksheet'
+'اختبار' :'quiz'
+};
+return types[type] || type;
+}
+تحديث تقدم المستخدم )مثال بسيط( //
+async function markProgress(skillId) {
+try {
+في التطبيق الحقيقي، يجب إرسال البيانات إلى الخادم //
+const response = await fetch('/api/progress', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json'
+},
+body: JSON.stringify({
+يجب استبدال هذا بمعرف المستخدم الحقيقي // 1, :id_user
+skill_id: skillId,
+    ً يمكن حساب هذه القيمة بناء على تقدم المستخدم الفعلي // 75, :percentage_progress
 
+completed_components: '1,2,3',
+
+completed_exercises: '1,2'
+
+})
+
+});
+
+if (!response.ok) {
+
+throw new Error(`HTTP error! status: ${response.status}`);
+
+}
+
+const result = await response.json();
+
+if (result.success) {
+
+;('!تم تحديث التقدم بنجاح')alert
+
+إعادة تحميل المهارات لتحديث شريط التقدم //
+
+fetchSkills();
+
+} else {
+
+;('فشل تحديث التقدم')Error new throw
+
+}
+
+} catch (error) {
+
+console.error('Error updating progress:', error);
+
+alert('
+
+ً
+
+،ً حدث خطأ أثناء تحديث التقدم. يرجى المحاولة مرة أخرى لاحقا
+
+;('.عذرا
+
+}
+
+}
+
+إعداد أزرار تصفية الفئات //
+
+function setupCategoryTabs() {
+
+const tabs = document.querySelectorAll('.category-tab');
+
+tabs.forEach(tab => {
+
+tab.addEventListener('click', function() {
+
+إزالة الفئة النشطة من جميع الأزرار //
+
+tabs.forEach(t => t.classList.remove('active'));
+
+إضافة الفئة النشطة إلى الزر المحدد //
+
+this.classList.add('active');
+
+تصفية المهارات حسب الفئة المحددة //
+
+const categoryId = this.getAttribute('data-category');
+
+إعادة تحميل المهارات مع تصفية الفئة //
+
+fetch('/api/skills')
+
+.then(response => response.json())
+
+.then(skills => displaySkills(skills, categoryId))
+
+.catch(error => console.error('Error:', error));
+
+});
+
+});
+
+}
+
+تحميل المهارات عند تحميل الصفحة //
+    window.onload = function() {
+fetchSkills();
+setupCategoryTabs();
