@@ -1,3 +1,44 @@
+skills12+2.Json
+{
+  "skills": [
+    {"id": 1, "name": "القيادة"},
+    {"id": 2, "name": "التواصل"},
+    {"id": 3, "name": "حل المشكلات"},
+    {"id": 4, "name": "التحليل"},
+    {"id": 5, "name": "الابتكار"},
+    {"id": 6, "name": "إدارة الوقت"},
+    {"id": 7, "name": "العمل الجماعي"},
+    {"id": 8, "name": "المرونة"},
+    {"id": 9, "name": "اتخاذ القرار"},
+    {"id": 10, "name": "الذكاء العاطفي"},
+    {"id": 11, "name": "التركيز"},
+    {"id": 12, "name": "الانضباط"},
+    {"id": 13, "name": "النية الصافية"},
+    {"id": 14, "name": "القدرة الروحية"}
+  ]
+}
+
+
+export function evaluateSkills(userAnswers) {
+  let recommendations = [];
+
+  if (userAnswers["القيادة"] >= 8) {
+    recommendations.push("أنت قائد بالفطرة، فكّر في تدريب مهارات التأثير والإقناع.");
+  }
+
+  if (userAnswers["التحليل"] <= 4) {
+    recommendations.push("طور مهارات التفكير التحليلي لديك بدورات في تحليل البيانات أو المنطق.");
+  }
+
+  if (userAnswers["النية الصافية"] >= 9 && userAnswers["القدرة الروحية"] >= 9) {
+    recommendations.push("تملك صفاء نادر، فكّر في الإرشاد أو الدعم النفسي للآخرين.");
+  }
+
+  return recommendations;
+}
+
+
+
 skills12+2.js
 {
   "goal_suggestion": {
