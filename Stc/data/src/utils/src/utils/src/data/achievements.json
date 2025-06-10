@@ -1,0 +1,17 @@
+achievements.json
+[
+  { "date": "2025-06-01", "task": "أنهيت تدريبًا على Canva", "type": "تعلم" },
+  { "date": "2025-06-03", "task": "قابلت عميل لأول مرة", "type": "عمل حر" }
+]
+
+import achievements from "../data/achievements.json";
+
+export function getWeeklyAchievements(startDate, endDate) {
+  return achievements.filter(a => {
+    const date = new Date(a.date);
+    return date >= new Date(startDate) && date <= new Date(endDate);
+  });
+}
+
+
+---
