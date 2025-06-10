@@ -1,0 +1,25 @@
+src/data/weeklyVision.json
+
+{
+  "العمل": ["خصص ساعتين للعميل X", "اطرح عرض جديد"],
+  "الصحة": ["مشي 20 دقيقة 3 مرات", "شرب 2 لتر ماء يوميًا"],
+  "الدين": ["صلاة الوتر يوميًا", "قراءة سورة البقرة"],
+  "العلاقات": ["تواصل مع شخص عزيز", "ساعد أحد الجيران"],
+  "التعلم": ["شاهد درس تصميم", "راجع فكرة مشروع"]
+}
+
+وظيفة مقترحة:
+
+import weeklyVision from "../data/weeklyVision.json";
+
+export function getWeeklyPlan() {
+  const plan = {};
+  for (let area in weeklyVision) {
+    const tasks = weeklyVision[area];
+    plan[area] = tasks.sort(() => 0.5 - Math.random()).slice(0, 2);
+  }
+  return plan;
+}
+
+
+---
