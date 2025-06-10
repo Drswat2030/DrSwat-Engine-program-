@@ -18,7 +18,6 @@ src/data/skills12+2.Json
   ]
 }
 
-📁 ملف: src/utils/skillEvaluator.js
 
 export function evaluateSkills(userAnswers) {
   let recommendations = [];
