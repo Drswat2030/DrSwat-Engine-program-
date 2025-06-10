@@ -8,18 +8,6 @@ src/data/weeklyVision.json
   "التعلم": ["شاهد درس تصميم", "راجع فكرة مشروع"]
 }
 
-وظيفة مقترحة:
-
-import weeklyVision from "../data/weeklyVision.json";
-
-export function getWeeklyPlan() {
-  const plan = {};
-  for (let area in weeklyVision) {
-    const tasks = weeklyVision[area];
-    plan[area] = tasks.sort(() => 0.5 - Math.random()).slice(0, 2);
-  }
-  return plan;
-}
 
 
 ---
