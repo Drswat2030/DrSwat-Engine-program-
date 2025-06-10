@@ -1,0 +1,63 @@
+index.html
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DrSwat Engine</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+
+<!-- نافذة منبثقة -->
+<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full text-center relative">
+    <button onclick="closeModal()" class="absolute top-2 left-2 text-gray-500 hover:text-red-500 text-lg">×</button>
+    <h2 id="modal-title" class="text-xl font-bold mb-4"></h2>
+    <p id="modal-content" class="text-gray-700"></p>
+  </div>
+</div>
+  <button onclick="openModal('goal_suggestion')" class="bg-blue-600 text-white px-4 py-2 rounded">ابدأ</button>
+<!-- كرت 1 -->
+<div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition">
+  <h2 class="text-lg font-bold mb-4">صانع الأفكار</h2>
+  <button onclick="openModal('idea_generator')" class="bg-blue-600 text-white px-4 py-2 rounded">ابدأ</button>
+</div>
+
+<!-- كرت 2 -->
+<div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition">
+  <h2 class="text-lg font-bold mb-4">تحليل الذات</h2>
+  <button onclick="openModal('self_analysis')" class="bg-blue-600 text-white px-4 py-2 rounded">ابدأ</button>
+</div>
+
+<!-- كرت 3 -->
+<div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition">
+  <h2 class="text-lg font-bold mb-4">استثمار الوقت</h2>
+  <button onclick="openModal('time_investment')" class="bg-blue-600 text-white px-4 py-2 rounded">ابدأ</button>
+</div>
+
+<!-- كرت 4 -->
+<div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition">
+  <h2 class="text-lg font-bold mb-4">متابعة المهارات</h2>
+  <button onclick="openModal('skill_tracker')" class="bg-blue-600 text-white px-4 py-2 rounded">ابدأ</button>
+</div>
+  <footer class="text-center mt-12 text-gray-500">
+    <p>&copy; 2025 DrSwat | جميع الحقوق محفوظة</p>
+  </footer>
+
+  <script>
+    function openModal() {
+      document.getElementById('modal').classList.remove('hidden');
+    }
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+  </script>
+
+</body>
+</html>
+
